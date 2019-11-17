@@ -1,0 +1,38 @@
+{
+  "name": "lggstore",
+  "version": "1.4.7",
+  "description": "react store",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node ./webpack/build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/981445421/lggStore.git"
+  },
+  "keywords": [
+    "react",
+    "store",
+    "\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[Cclassreact",
+    "store\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D",
+    "react",
+    "store"
+  ],
+  "author": "lizhanwei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/981445421/lggStore/issues"
+  },
+  "homepage": "https://github.com/981445421/lggStore#readme",
+  "dependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
+    "babel-loader": "^8.0.0-beta.0",
+    "react": "^16.12.0",
+    "webpack": "^4.41.2"
+  },
+  "devDependencies": {}
+}
