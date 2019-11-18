@@ -8,13 +8,13 @@ export default function lggConnect(fn) {
                 super(props, context);
                 this.unSubscribe = context.store.onSubscription(this.lggSubscribe);
                 const lastState = fn(context.store.getState());
-                const {forwardedRef, ...rest} = this.props;
+                // const {forwardedRef, ...rest} = this.props;
                 const userProps = {
                     lggDispatch: context.store.dispatch,
                     ...lastState,
-                    ...rest,
+                    // ...rest,
                 };
-                this.state = {...userProps, forwardedRef};
+                this.state = {...userProps};
             }
 
             componentWillUnmount() {
@@ -36,9 +36,10 @@ export default function lggConnect(fn) {
             };
 
             render() {
-                const {forwardedRef, ...userProps} = this.state;
+                const {...userProps} = this.state;
+                const {forwardedRef, ...rest}=this.props;
                 return (
-                    <Components {...userProps} ref={forwardedRef}/>
+                    <Components {...userProps} {...rest} ref={forwardedRef}/>
                 )
             }
         }
