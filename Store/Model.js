@@ -4,10 +4,7 @@ export default class Model {
     modelName = null;
     state = {};
 
-    deepCopy(obj) {
-        return Store.deepCopy(obj);
-    }
-    dispatch(action){
+    dispatch(action) {
         Store.dispatch(action);
     }
 
@@ -28,6 +25,7 @@ export default class Model {
     }
 
     async(fn, action) {
+        action.type = this.modelName + "/" + fn.name;
         Store.async(fn, action, this)
     }
 
@@ -38,5 +36,9 @@ export default class Model {
     setState(param) {
         const modelName = this.modelName;
         return Store.setState(param, modelName);
+    }
+
+    sendToMainThread(type, data) {
+        Store.sendToMainThread(type, data);
     }
 }
