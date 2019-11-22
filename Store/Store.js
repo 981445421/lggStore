@@ -1,4 +1,4 @@
-import {batchMountEnd, dispatchEnd, dispatchStart, mountEnd, unMountEnd, updateType} from "./ConstType";
+import {batchMountEnd, coerceRender, dispatchEnd, dispatchStart, mountEnd, unMountEnd, updateType} from "./ConstType";
 import {Thunk} from "./Thunk";
 
 class Store {
@@ -177,13 +177,25 @@ class Store {
 
     getState(modelName) {
         if (modelName) {
-            if (this.modelInstance.hasOwnProperty(modelName)) {
-                return this.modelInstance[modelName];
+            if (this.store.hasOwnProperty(modelName)) {
+                return this.store[modelName];
             } else {
-                return undefined;
+                return null;
             }
         } else {
             return this.store;
+        }
+    }
+
+    getInstance(modelName) {
+        if (modelName) {
+            if (this.modelInstance.hasOwnProperty(modelName)) {
+                return this.modelInstance[modelName];
+            } else {
+                return null;
+            }
+        } else {
+            return this.modelInstance;
         }
     }
 
@@ -209,7 +221,11 @@ class Store {
 
     sendToMainThread(type, data) {
         if (type === updateType) {
-            this.render();
+            //非强制渲染
+            this.render(false);
+        } else if (type === coerceRender) {
+            //强制渲染
+            this.render(true);
         }
     }
 
@@ -227,11 +243,11 @@ class Store {
         };
     }
 
-    render() {
+    render(coerceRender) {
         if (this.timer === null) {
             this.timer = setTimeout(() => {
                 this.subscriptionArr.forEach(fn => {
-                    fn(this.store);
+                    fn(this.store, coerceRender);
                 });
                 this.timer = null;
             }, 0);

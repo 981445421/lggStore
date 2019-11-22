@@ -5,6 +5,9 @@ export interface Action {
     payload?: any,
 }
 
+type UpdateType = "_$update";
+type CoerceRender = "_$coerceRender";
+
 export function lggConnect(
     mapStateToProps?: Function
 ): Function;
@@ -27,9 +30,9 @@ export interface IModel<T> {
 
     getState(modelName?: string);
 
-    setState(param: any);
+    setState<K extends keyof T>(state: {[P in K]: T[P]});
 
-    sendToMainThread(type: string, data: any);
+    sendToMainThread(type: UpdateType | CoerceRender, data: any);
 }
 
 type ModelName = string;
@@ -52,15 +55,17 @@ export class Model<T> {
 
     getState(modelName?: string);
 
-    setState(param: any);
+    setState<K extends keyof T>(state: {[P in K]: T[P]});
 
-    sendToMainThread(type: string, data: any);
+    sendToMainThread(type: UpdateType | CoerceRender, data: any);
 }
 
 export class Store {
     dispatch(action: Action);
 
-    getState(modelName?: ModelName);
+    getState(modelName?: ModelName): any;
+
+    getInstance(modelName?: ModelName): any;
 
     hook(arg: { onError?(action: Action, e: any), onEffect?: (fn: (action: Action) => any, action: Action, ts: IModel<any>) => Function });
 

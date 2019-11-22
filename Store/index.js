@@ -11,7 +11,7 @@ export default class Index {
     };
 
     model(model) {
-       return Store.batchMount(model)
+        return Store.batchMount(model)
     };
 
     dispatch(action) {
@@ -34,8 +34,12 @@ export default class Index {
         return Store.getState(modelName);
     };
 
+    getInstance(modelName) {
+        return Store.getInstance(modelName);
+    }
+
     onSubscription(fn) {
-       return Store.onSubscription(fn)
+        return Store.onSubscription(fn)
     };
 
 }

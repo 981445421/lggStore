@@ -21,13 +21,15 @@ export default function lggConnect(fn) {
                 this.unSubscribe();
             }
 
-            lggSubscribe = () => {
+            lggSubscribe = (store, coerceRender) => {
                 const newState = fn(this.context.store.getState());
-                let modify = false;
-                for (let k in newState) {
-                    if (newState[k] !== this.state[k]) {
-                        modify = true;
-                        break;
+                let modify = coerceRender || false;
+                if (!modify) {
+                    for (let k in newState) {
+                        if (newState[k] !== this.state[k]) {
+                            modify = true;
+                            break;
+                        }
                     }
                 }
                 if (modify) {
@@ -37,7 +39,7 @@ export default function lggConnect(fn) {
 
             render() {
                 const {...userProps} = this.state;
-                const {forwardedRef, ...rest}=this.props;
+                const {forwardedRef, ...rest} = this.props;
                 return (
                     <Components {...userProps} {...rest} ref={forwardedRef}/>
                 )

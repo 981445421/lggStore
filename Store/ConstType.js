@@ -1,4 +1,5 @@
 export const updateType = "_$update";
+export const coerceRender = "_$coerceRender";
 export const batchMountEnd = "_$batchMountEnd";
 export const mountEnd = "_$mountEnd";
 export const unMountEnd = "_$unMountEnd";
