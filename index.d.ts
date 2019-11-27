@@ -1,8 +1,8 @@
 import React from 'react'
 
-export interface Action {
+export interface Action<T=any> {
     type: string,
-    payload?: any,
+    payload: T,
 }
 
 type UpdateType = "_$update";
@@ -18,6 +18,8 @@ export interface IModel<T> {
 
     dispatch(action: Action);
 
+    emit(method: string, payload?: { [name: string]: any });
+
     sleep(param: number);
 
     call(fn: (arg?: any) => any, arg?: any);
@@ -26,7 +28,7 @@ export interface IModel<T> {
 
     takeEarlier(fn: (arg?: any) => any, arg?: any);
 
-    async(fn: (action: Action) => void, action: Action);
+    async<A>(fn: (action: Action<A>) => void, param: {[P in A]: A[P]});
 
     getState(modelName?: string);
 
@@ -43,6 +45,8 @@ export class Model<T> {
 
     dispatch(action: Action);
 
+    emit(method: string, payload?: { [name: string]: any });
+
     sleep(param: number);
 
     call(fn: (arg?: any) => any, arg?: any);
@@ -51,7 +55,7 @@ export class Model<T> {
 
     takeEarlier(fn: (arg?: any) => any, arg?: any);
 
-    async(fn: (action: Action) => void, action: Action);
+    async<A>(fn: (action: Action<A>) => void, param: {[P in A]: A[P]});
 
     getState(modelName?: string);
 

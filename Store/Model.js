@@ -8,24 +8,31 @@ export default class Model {
         Store.dispatch(action);
     }
 
+    emit(method, payload) {
+        Store.dispatch({type: this.modelName + "/" + method, payload});
+    }
+
     sleep(param) {
         return Store.sleep(param);
     }
 
-    call(fn, action) {
-        return Store.call(fn, action)
+    call(fn, param) {
+        return Store.call(fn, param)
     }
 
-    takeLatest(fn, action) {
-        return Store.takeLatest(fn, action)
+    takeLatest(fn, param) {
+        return Store.takeLatest(fn, param)
     }
 
-    takeEarlier(fn, action) {
-        return Store.takeEarlier(fn, action)
+    takeEarlier(fn, param) {
+        return Store.takeEarlier(fn, param)
     }
 
-    async(fn, action) {
-        action.type = this.modelName + "/" + fn.name;
+    async(fn, param) {
+        const action = {
+            type: this.modelName + "/" + fn.name,
+            payload: param
+        };
         Store.async(fn, action, this)
     }
 

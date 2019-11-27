@@ -85,7 +85,7 @@ class Store {
     dispatch(action) {
         this.sendToMainThread(dispatchStart, action);
         const type = action.type.split("/");
-        if (this.isMount(type[0])) {
+        if (type.length === 2 && this.isMount(type[0])) {
             if (typeof this.modelInstance[type[0]][type[1]] === "function") {
                 const fnInstance = this.modelInstance[type[0]][type[1]](action);
                 if (fnInstance && typeof fnInstance === "object" && fnInstance && fnInstance["next"] && fnInstance["return"] && fnInstance["throw"] && typeof fnInstance.next === "function" && typeof fnInstance.return === "function" && typeof fnInstance.throw === "function") {
