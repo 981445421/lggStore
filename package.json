@@ -1,6 +1,6 @@
 {
   "name": "lggstore",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "react store",
   "main": "index.js",
   "scripts": {
