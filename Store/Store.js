@@ -2,7 +2,6 @@ import {batchMountEnd, coerceRender, dispatchEnd, dispatchStart, mountEnd, unMou
 import {Thunk} from "./Thunk";
 
 class Store {
-    timer = null;
     store = {};
     subscriptionArr = [];
     onError = null;
@@ -244,14 +243,9 @@ class Store {
     }
 
     render(coerceRender) {
-        if (this.timer === null) {
-            this.timer = setTimeout(() => {
-                this.subscriptionArr.forEach(fn => {
-                    fn(this.store, coerceRender);
-                });
-                this.timer = null;
-            }, 0);
-        }
+        this.subscriptionArr.forEach(fn => {
+            fn(this.store, coerceRender);
+        });
     }
 }
 
