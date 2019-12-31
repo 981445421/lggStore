@@ -47,10 +47,12 @@ export default function lggConnect(fn) {
         }
 
         const name = Components.displayName || Components.name;
-        NewComponent.displayName = `lggConnect(${name})`;
         NewComponent.contextType = LggReactContext;
-        return React.forwardRef(function (props, ref) {
+        function forwardRef(props, ref) {
             return <NewComponent {...props} forwardedRef={ref}/>;
-        });
+        }
+
+        forwardRef.displayName = `lggConnect(${name})`;
+        return React.forwardRef(forwardRef);
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "lggstore",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "react store",
   "main": "index.js",
   "scripts": {
@@ -14,10 +14,7 @@
   "keywords": [
     "react",
     "store",
-    "\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[Cclassreact",
-    "store\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D",
-    "react",
-    "store"
+    "react store"
   ],
   "author": "lizhanwei",
   "license": "ISC",
