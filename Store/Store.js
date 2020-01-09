@@ -164,6 +164,8 @@ class Store {
     }
 
     async(fn, action, ts) {
+        action._$$modelInstance = ts;
+        action._$$fn = fn;
         let fnInstance = null;
         if (typeof this.onEffect === "function") {
             const newFn = this.onEffect(fn, action, ts);

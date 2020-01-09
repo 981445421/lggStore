@@ -28,12 +28,12 @@ export default class Model {
         return Store.takeEarlier(fn, param)
     }
 
-    async(fn, param) {
+    async(fn, param, ts) {
         const action = {
             type: this.modelName + "/" + fn.name,
             payload: param
         };
-        Store.async(fn, action, this)
+        Store.async(fn, action, ts || this);
     }
 
     getState(modelName) {

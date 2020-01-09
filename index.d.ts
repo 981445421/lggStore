@@ -28,7 +28,7 @@ export interface IModel<T> {
 
     takeEarlier(fn: (arg?: any) => any, arg?: any);
 
-    async<A>(fn: (action: Action<A>) => void, param: {[P in A]: A[P]});
+    async<A>(fn: (action: Action<A>) => void, param: {[P in A]: A[P]}, ts?: any);
 
     getState(modelName?: string);
 
@@ -55,7 +55,7 @@ export class Model<T> {
 
     takeEarlier(fn: (arg?: any) => any, arg?: any);
 
-    async<A>(fn: (action: Action<A>) => void, param: {[P in A]: A[P]});
+    async<A>(fn: (action: Action<A>) => void, param: {[P in A]: A[P]},ts?: any);
 
     getState(modelName?: string);
 
