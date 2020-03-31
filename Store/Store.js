@@ -107,9 +107,9 @@ class Store {
         }
     }
 
-    call(fn, arg) {
+    call(fn, ...arg) {
         return (next, cb, cbInstance) => {
-            fn(arg).then((res) => {
+            fn(...arg).then((res) => {
                 return next(false, res);
             }).catch((error) => {
                 return next(true, error);
@@ -117,7 +117,7 @@ class Store {
         }
     }
 
-    takeLatest(fn, arg) {
+    takeLatest(fn, ...arg) {
         return (next, cb, cbInstance) => {
             if (this.takeLatestStack.has(cb)) {
                 //如果存在相同的实例,销毁任务,并删除这个引用
@@ -129,7 +129,7 @@ class Store {
             }
             //添加新的引用和实例
             this.takeLatestStack.set(cb, cbInstance);
-            fn(arg).then((res) => {
+            fn(...arg).then((res) => {
                 //删除锁
                 this.takeLatestStack.delete(cb);
                 return next(false, res);
@@ -142,14 +142,14 @@ class Store {
 
     }
 
-    takeEarlier(fn, arg) {
+    takeEarlier(fn, ...arg) {
         return (next, cb, cbInstance) => {
             if (this.takeEarlierStack.has(cb)) {
                 //删除实例
                 return cbInstance.return();
             }
             this.takeEarlierStack.add(cb);
-            fn(arg).then((res) => {
+            fn(...arg).then((res) => {
                 //删除锁
                 setTimeout(() => {
                     this.takeEarlierStack.delete(cb);

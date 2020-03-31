@@ -16,16 +16,16 @@ export default class Model {
         return Store.sleep(param);
     }
 
-    call(fn, param) {
-        return Store.call(fn, param)
+    call(fn, ...param) {
+        return Store.call(fn, ...param)
     }
 
-    takeLatest(fn, param) {
-        return Store.takeLatest(fn, param)
+    takeLatest(fn, ...param) {
+        return Store.takeLatest(fn, ...param)
     }
 
-    takeEarlier(fn, param) {
-        return Store.takeEarlier(fn, param)
+    takeEarlier(fn, ...param) {
+        return Store.takeEarlier(fn, ...param)
     }
 
     async(fn, param, ts) {

@@ -11,7 +11,6 @@ type CoerceRender = "_$coerceRender";
 export function lggConnect(
     mapStateToProps?: Function
 ): Function;
-
 export interface IModel<T> {
     modelName: string;
     state: T;
@@ -22,11 +21,11 @@ export interface IModel<T> {
 
     sleep(param: number);
 
-    call(fn: (arg?: any) => any, arg?: any);
+    call(fn: (...arg: any[]) => any, ...arg: any[]);
 
-    takeLatest(fn: (arg?: any) => any, arg?: any);
+    takeLatest(fn: (...arg: any[]) => any, ...arg: any[]);
 
-    takeEarlier(fn: (arg?: any) => any, arg?: any);
+    takeEarlier(fn: (...arg: any[]) => any, ...arg: any[]);
 
     async<A>(fn: (action: Action<A>) => void, param: {[P in A]: A[P]}, ts?: any);
 
@@ -49,11 +48,11 @@ export class Model<T> {
 
     sleep(param: number);
 
-    call(fn: (arg?: any) => any, arg?: any);
+    call(fn: (...arg: any[]) => any, ...arg: any[]);
 
-    takeLatest(fn: (arg?: any) => any, arg?: any);
+    takeLatest(fn: (...arg: any[]) => any, ...arg: any[]);
 
-    takeEarlier(fn: (arg?: any) => any, arg?: any);
+    takeEarlier(fn: (...arg: any[]) => any, ...arg: any[]);
 
     async<A>(fn: (action: Action<A>) => void, param: {[P in A]: A[P]},ts?: any);
 
