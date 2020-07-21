@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 12
       - run: npm install
-      - run: run build
+      - run: npm run build
 
   publish-npm:
     needs: build
