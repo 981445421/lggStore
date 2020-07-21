@@ -1,0 +1,2 @@
+# lggStore
+react store
